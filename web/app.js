@@ -2247,8 +2247,9 @@ function webViewerInitialized() {
   let file;
   if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
     const queryString = document.location.search.substring(1);
-    const params = parseQueryString(queryString);
-    file = params.get("file") ?? AppOptions.get("defaultUrl");
+    // const params = parseQueryString(queryString);
+    file = window.fileReaderUrl ? window.fileReaderUrl : AppOptions.get("defaultUrl");
+    console.log(window.fileReaderUrl);
     validateFileURL(file);
   } else if (PDFJSDev.test("MOZCENTRAL")) {
     file = window.location.href;
