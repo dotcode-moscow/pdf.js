@@ -28,6 +28,7 @@
 /***/ ((__unused_webpack_module, exports) => {
 
 
+
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -1713,12 +1714,12 @@ const PDFViewerApplication = {
 
     this._forceCssTheme();
 
-
     await this._initializeL10n();
+
     if (this.isViewerEmbedded && _app_options.AppOptions.get("externalLinkTarget") === _pdf_link_service.LinkTarget.NONE) {
       _app_options.AppOptions.set("externalLinkTarget", _pdf_link_service.LinkTarget.TOP);
-
     }
+
     await this._initializeViewerComponents();
     this.bindEvents();
     this.bindWindowEvents();
@@ -1727,8 +1728,8 @@ const PDFViewerApplication = {
       this.eventBus.dispatch("localized", {
         source: this
       });
-
     });
+
     this._initializedCapability.resolve();
   },
 
@@ -3462,6 +3463,7 @@ function webViewerInitialized() {
   let file;
   const queryString = document.location.search.substring(1);
   file = window.fileReaderUrl ? window.fileReaderUrl : _app_options.AppOptions.get("defaultUrl");
+  console.log(window.fileReaderUrl);
   validateFileURL(file);
   const fileInput = appConfig.openFileInput;
   fileInput.value = null;
@@ -10111,7 +10113,7 @@ class PDFViewer {
   #onVisibilityChange = null;
 
   constructor(options) {
-    const viewerVersion = '3.0.87';
+    const viewerVersion = '3.0.88';
 
     if (_pdfjsLib.version !== viewerVersion) {
       throw new Error(`The API version "${_pdfjsLib.version}" does not match the Viewer version "${viewerVersion}".`);
@@ -10235,6 +10237,10 @@ class PDFViewer {
 
     const previous = this._currentPageNumber;
     this._currentPageNumber = val;
+    var event = new CustomEvent('pdfjs.pagechange', {
+      'detail': val
+    });
+    document.dispatchEvent(event);
     this.eventBus.dispatch("pagechanging", {
       source: this,
       pageNumber: val,
@@ -16268,7 +16274,7 @@ function getXfaHtmlForPrinting(printContainer, pdfDocument) {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -16282,14 +16288,14 @@ function getXfaHtmlForPrinting(printContainer, pdfDocument) {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
@@ -16322,8 +16328,8 @@ var _pdf_link_service = __webpack_require__(3);
 
 var _app = __webpack_require__(4);
 
-const pdfjsVersion = '3.0.87';
-const pdfjsBuild = '3fd2e422f';
+const pdfjsVersion = '3.0.88';
+const pdfjsBuild = '7b1bd9d12';
 const AppConstants = {
   LinkTarget: _pdf_link_service.LinkTarget,
   RenderingStates: _ui_utils.RenderingStates,

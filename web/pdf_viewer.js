@@ -405,7 +405,10 @@ class PDFViewer {
     }
     const previous = this._currentPageNumber;
     this._currentPageNumber = val;
-
+    var event = new CustomEvent('pdfjs.pagechange', {
+      'detail': val
+    });
+    document.dispatchEvent(event);
     this.eventBus.dispatch("pagechanging", {
       source: this,
       pageNumber: val,
