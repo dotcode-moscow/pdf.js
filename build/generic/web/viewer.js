@@ -2074,6 +2074,8 @@ const PDFViewerApplication = {
   },
 
   set page(val) {
+    document.getElementById("viewer").querySelector(`div.page[data-page-number="${PDFViewerApplication.page}"]`).classList.add('page_hidden');
+    document.getElementById("viewer").querySelector(`div.page[data-page-number="${val}"]`).classList.remove('page_hidden');
     this.pdfViewer.currentPageNumber = val;
   },
 
@@ -10113,7 +10115,7 @@ class PDFViewer {
   #onVisibilityChange = null;
 
   constructor(options) {
-    const viewerVersion = '3.0.88';
+    const viewerVersion = '3.0.89';
 
     if (_pdfjsLib.version !== viewerVersion) {
       throw new Error(`The API version "${_pdfjsLib.version}" does not match the Viewer version "${viewerVersion}".`);
@@ -16328,8 +16330,8 @@ var _pdf_link_service = __webpack_require__(3);
 
 var _app = __webpack_require__(4);
 
-const pdfjsVersion = '3.0.88';
-const pdfjsBuild = '7b1bd9d12';
+const pdfjsVersion = '3.0.89';
+const pdfjsBuild = 'fdeeedb01';
 const AppConstants = {
   LinkTarget: _pdf_link_service.LinkTarget,
   RenderingStates: _ui_utils.RenderingStates,

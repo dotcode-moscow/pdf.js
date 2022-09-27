@@ -3067,3 +3067,21 @@ dialog :link {
     display: none;
   }
 }
+.page_hidden{
+  max-height: 0px !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  margin: 0 !important;
+}
+body.page-grid .canvasWrapper:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, .3) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0, 0, 0, .3) 1px, transparent 1px);
+  /*background-size: calc(1mm * var(--zoom)) calc(1mm * var(--zoom)), calc(1mm * var(--zoom)) calc(1mm * var(--zoom));*/
+  background-position: -1px -1px, -1px -1px;
+}
