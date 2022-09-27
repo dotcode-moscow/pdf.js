@@ -918,7 +918,7 @@ class PDFViewer {
     this._firstPageCapability = createPromiseCapability();
     this._onePageRenderedCapability = createPromiseCapability();
     this._pagesCapability = createPromiseCapability();
-    this._scrollMode = ScrollMode.VERTICAL;
+    this._scrollMode = ScrollMode.PAGE;
     this._previousScrollMode = ScrollMode.UNKNOWN;
     this._spreadMode = SpreadMode.NONE;
 

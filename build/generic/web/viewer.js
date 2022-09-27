@@ -2074,8 +2074,6 @@ const PDFViewerApplication = {
   },
 
   set page(val) {
-    document.getElementById("viewer").querySelector(`div.page[data-page-number="${PDFViewerApplication.page}"]`).classList.add('page_hidden');
-    document.getElementById("viewer").querySelector(`div.page[data-page-number="${val}"]`).classList.remove('page_hidden');
     this.pdfViewer.currentPageNumber = val;
   },
 
@@ -10115,7 +10113,7 @@ class PDFViewer {
   #onVisibilityChange = null;
 
   constructor(options) {
-    const viewerVersion = '3.0.89';
+    const viewerVersion = '3.0.90';
 
     if (_pdfjsLib.version !== viewerVersion) {
       throw new Error(`The API version "${_pdfjsLib.version}" does not match the Viewer version "${viewerVersion}".`);
@@ -10685,7 +10683,7 @@ class PDFViewer {
     this._firstPageCapability = (0, _pdfjsLib.createPromiseCapability)();
     this._onePageRenderedCapability = (0, _pdfjsLib.createPromiseCapability)();
     this._pagesCapability = (0, _pdfjsLib.createPromiseCapability)();
-    this._scrollMode = _ui_utils.ScrollMode.VERTICAL;
+    this._scrollMode = _ui_utils.ScrollMode.PAGE;
     this._previousScrollMode = _ui_utils.ScrollMode.UNKNOWN;
     this._spreadMode = _ui_utils.SpreadMode.NONE;
     this.#scrollModePageState = {
@@ -16330,8 +16328,8 @@ var _pdf_link_service = __webpack_require__(3);
 
 var _app = __webpack_require__(4);
 
-const pdfjsVersion = '3.0.89';
-const pdfjsBuild = 'fdeeedb01';
+const pdfjsVersion = '3.0.90';
+const pdfjsBuild = 'e70585d77';
 const AppConstants = {
   LinkTarget: _pdf_link_service.LinkTarget,
   RenderingStates: _ui_utils.RenderingStates,

@@ -709,8 +709,6 @@ const PDFViewerApplication = {
   },
 
   set page(val) {
-    document.getElementById("viewer").querySelector(`div.page[data-page-number="${PDFViewerApplication.page}"]`).classList.add('page_hidden')
-    document.getElementById("viewer").querySelector(`div.page[data-page-number="${val}"]`).classList.remove('page_hidden')
     this.pdfViewer.currentPageNumber = val;
   },
 
